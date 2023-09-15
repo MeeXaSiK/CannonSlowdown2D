@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a300e85b034e7f8902be5fc16ddb43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _forceMode2D: 1
+  _shotForce: 15
   _projectilePrefab: {fileID: 295238230465646930, guid: a749e2e12d47c944ebc030e1da37eef3, type: 3}
   _projectileLaunchPoint: {fileID: 4386171730149525658}
-  _forceMode2D: 1
-  _shotForce: 10
 --- !u!1 &6649644259079759675
 GameObject:
   m_ObjectHideFlags: 0

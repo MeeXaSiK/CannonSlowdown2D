@@ -336,10 +336,10 @@ MonoBehaviour:
     disableAffectionZoneKey: 100
     reloadSceneKey: 114
     quitApplicationKey: 27
-  currentSceneIndex: 0
-  _affectionZone2D: {fileID: 8470938860837887664}
-  leftCannon: {fileID: 7853548840896681323}
-  rightCannon: {fileID: 3477707079681216941}
+  _currentSceneIndex: 0
+  _rigidbodyModifierZone2D: {fileID: 8470938860837887664}
+  _leftCannon: {fileID: 7853548840896681323}
+  _rightCannon: {fileID: 3477707079681216941}
 --- !u!1 &4397587081019236565
 GameObject:
   m_ObjectHideFlags: 0

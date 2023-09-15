@@ -5,11 +5,9 @@ using UnityEngine;
 
 namespace Scripts.Zones
 {
-    public class SlowdownZone2D : RigidbodyAffectionZone2D
+    public class RigidbodySlowdownZone2D : RigidbodyModifierZone2D
     {
         [SerializeField, Min(Constants.Zero)] private float _timeScale = 0.1f;
-
-        private const float RigidbodyGravityScaleOnAffect = Constants.Zero;
 
         protected override void OnRigidbodyEntered(in RigidbodyData2D initialRigidbodyData2D)
         {
@@ -26,14 +24,14 @@ namespace Scripts.Zones
             RevertSlowdown(initialRigidbodyData2D);
         }
 
-        private void ApplySlowdown(Rigidbody2D rigidbodyToAffect)
+        private void ApplySlowdown(Rigidbody2D rigidbodyToModify)
         {
-            rigidbodyToAffect.gravityScale = RigidbodyGravityScaleOnAffect;
-            rigidbodyToAffect.mass /= _timeScale;
-            rigidbodyToAffect.velocity *= _timeScale;
-            rigidbodyToAffect.angularVelocity *= _timeScale;
-            rigidbodyToAffect.drag *= _timeScale;
-            rigidbodyToAffect.angularDrag *= _timeScale;
+            rigidbodyToModify.gravityScale = Constants.Zero;
+            rigidbodyToModify.mass /= _timeScale;
+            rigidbodyToModify.velocity *= _timeScale;
+            rigidbodyToModify.angularVelocity *= _timeScale;
+            rigidbodyToModify.drag *= _timeScale;
+            rigidbodyToModify.angularDrag *= _timeScale;
         }
 
         private void ApplyGravity(in RigidbodyData2D data)

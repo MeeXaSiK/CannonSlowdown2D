@@ -16,12 +16,12 @@ namespace Scripts.Core.Infrastructure
         [SerializeField] private InputSettings _inputSettings;
 
         [Header(Constants.Headers.Other)]
-        [SerializeField, Min(Constants.Zero)] private int currentSceneIndex;
+        [SerializeField, Min(Constants.Zero), Delayed] private int _currentSceneIndex;
         
         [Header(Constants.Headers.ExternalDependencies)] 
-        [SerializeField] private RigidbodyAffectionZone2D _affectionZone2D;
-        [SerializeField] private Cannon2D leftCannon;
-        [SerializeField] private Cannon2D rightCannon;
+        [SerializeField] private RigidbodyModifierZone2D _rigidbodyModifierZone2D;
+        [SerializeField] private Cannon2D _leftCannon;
+        [SerializeField] private Cannon2D _rightCannon;
         
         private readonly List<IUpdatable> _updatables = new(Constants.DefaultCollectionCapacity);
         private readonly KeyboardInputListener _keyboardInputListener = new();
@@ -30,7 +30,8 @@ namespace Scripts.Core.Infrastructure
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            currentSceneIndex = Mathf.Clamp(currentSceneIndex, Constants.Zero, SceneManager.sceneCountInBuildSettings);
+            _currentSceneIndex = 
+                Mathf.Clamp(_currentSceneIndex, Constants.Zero, SceneManager.sceneCountInBuildSettings);
         }
 #endif
         
@@ -54,19 +55,19 @@ namespace Scripts.Core.Infrastructure
 
         private void InitializeInput()
         {
-            _keyboardInputListener.BindAction(_inputSettings.leftCannonKey, leftCannon.PerformShot);
-            _keyboardInputListener.BindAction(_inputSettings.rightCannonKey, rightCannon.PerformShot);
-            _keyboardInputListener.BindAction(_inputSettings.reloadSceneKey, ReloadScene);
-            _keyboardInputListener.BindAction(_inputSettings.quitApplicationKey, Application.Quit);
-            _keyboardInputListener.BindAction(_inputSettings.enableAffectionZoneKey, _affectionZone2D.EnableAffection);
-            _keyboardInputListener.BindAction(_inputSettings.disableAffectionZoneKey, _affectionZone2D.DisableAffection);
+            _keyboardInputListener.BindAction(_inputSettings.LeftCannonKey, _leftCannon.PerformShot);
+            _keyboardInputListener.BindAction(_inputSettings.RightCannonKey, _rightCannon.PerformShot);
+            _keyboardInputListener.BindAction(_inputSettings.ReloadSceneKey, ReloadScene);
+            _keyboardInputListener.BindAction(_inputSettings.QuitApplicationKey, Application.Quit);
+            _keyboardInputListener.BindAction(_inputSettings.EnableModifierZoneKey, _rigidbodyModifierZone2D.EnableModifier);
+            _keyboardInputListener.BindAction(_inputSettings.DisableModifierZoneKey, _rigidbodyModifierZone2D.DisableModifier);
             
             _updatables.Add(_keyboardInputListener);
         }
 
         private void ReloadScene()
         {
-            _sceneLoader.LoadScene(currentSceneIndex);
+            _sceneLoader.LoadScene(_currentSceneIndex);
         }
     }
 }

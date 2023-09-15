@@ -8,13 +8,13 @@ using UnityEngine;
 namespace Scripts.Zones.Base
 {
     [RequireComponent(typeof(Collider2D))]
-    public abstract class RigidbodyAffectionZone2D : MonoBehaviour
+    public abstract class RigidbodyModifierZone2D : MonoBehaviour
     {
         private readonly Dictionary<Rigidbody2D, RigidbodyData2D> _initialRigidbodiesDataMap = new(
             Constants.DefaultCollectionCapacity);
 
         private Collider2D _zoneCollider2D;
-        private bool _isAffectionEnabled = true;
+        private bool _isModifierEnabled = true;
         private bool _hasEnteredRigidbodies;
         private bool _shouldColliderBeDisabled;
 
@@ -50,7 +50,7 @@ namespace Scripts.Zones.Base
 #endif
         private void FixedUpdate()
         {
-            if (_isAffectionEnabled == false)
+            if (_isModifierEnabled == false)
                 return;
             
             if (_hasEnteredRigidbodies == false)
@@ -69,7 +69,7 @@ namespace Scripts.Zones.Base
             
             if (TryAddRigidbody(attachedRigidbody, out RigidbodyData2D initialData))
             {
-                if (_isAffectionEnabled)
+                if (_isModifierEnabled)
                 {
                     OnRigidbodyEntered(initialData);
                 }
@@ -83,31 +83,31 @@ namespace Scripts.Zones.Base
             
             if (TryRemoveRigidbody(attachedRigidbody, out RigidbodyData2D initialData))
             {
-                if (_isAffectionEnabled)
+                if (_isModifierEnabled)
                 {
                     OnRigidbodyExit(initialData);
                 }
             }
         }
 
-        public void EnableAffection()
+        public void EnableModifier()
         {
-            if (_isAffectionEnabled)
+            if (_isModifierEnabled)
                 return;
             
-            AffectEnteredRigidbodies();
+            ModifyEnteredRigidbodies();
             
-            _isAffectionEnabled = true;
+            _isModifierEnabled = true;
         }
 
-        public void DisableAffection()
+        public void DisableModifier()
         {
-            if (_isAffectionEnabled == false)
+            if (_isModifierEnabled == false)
                 return;
             
             RevertEnteredRigidbodies();
 
-            _isAffectionEnabled = false;
+            _isModifierEnabled = false;
         }
         
         private void ForEachRigidbodyInitialData(Action<RigidbodyData2D> action)
@@ -148,7 +148,7 @@ namespace Scripts.Zones.Base
             return false;
         }
 
-        private void AffectEnteredRigidbodies()
+        private void ModifyEnteredRigidbodies()
         {
             ForEachRigidbodyInitialData(data => OnRigidbodyEntered(data));
         }
