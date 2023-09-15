@@ -34,7 +34,6 @@ namespace Scripts.Core.Infrastructure
                 Mathf.Clamp(_currentSceneIndex, Constants.Zero, SceneManager.sceneCountInBuildSettings);
         }
 #endif
-        
         private void Awake()
         {
             Initialize();
