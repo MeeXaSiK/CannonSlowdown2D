@@ -12,34 +12,43 @@ namespace Scripts.Zones.Base
     {
         private readonly Dictionary<Rigidbody2D, RigidbodyData2D> _initialRigidbodiesDataMap = new(
             Constants.DefaultCollectionCapacity);
-
+        
         private Collider2D _zoneCollider2D;
-        private bool _isModifierEnabled = true;
+        private bool _isComponentEnabled;
         private bool _hasEnteredRigidbodies;
-        private bool _shouldColliderBeDisabled;
+
+        public bool IsModifierEnabled { get; private set; } = true;
 
         private void Awake()
         {
+            _isComponentEnabled = enabled;
             _zoneCollider2D = GetComponent<Collider2D>();
         }
 
         private void OnEnable()
         {
 #if DEBUG
-            if (_shouldColliderBeDisabled && _zoneCollider2D.enabled)
-            {
-                Debug.LogWarning("The active of a collider belonging to this zone should be regulated " +
-                                 "only by this zone to avoid incorrect behaviour!", _zoneCollider2D);
-            }
+            ZoneErrorsDetection.CheckForCorrectActive(_isComponentEnabled, _zoneCollider2D,
+                errorDetectedCallback: () => _zoneCollider2D.enabled = false);
 #endif
+            _isComponentEnabled = true;
             _zoneCollider2D.enabled = true;
-            _shouldColliderBeDisabled = false;
         }
         
         private void OnDisable()
         {
+#if DEBUG
+            ZoneErrorsDetection.CheckForCorrectActive(_isComponentEnabled, _zoneCollider2D, 
+                errorDetectedCallback: () => _zoneCollider2D.enabled = true);
+#endif
             _zoneCollider2D.enabled = false;
-            _shouldColliderBeDisabled = true;
+            _isComponentEnabled = false;
+
+            if (_hasEnteredRigidbodies)
+            {
+                RevertModifiedRigidbodies();
+                ClearRigidbodiesInitialDataMap();
+            }
         }
         
 #if DEBUG
@@ -50,7 +59,7 @@ namespace Scripts.Zones.Base
 #endif
         private void FixedUpdate()
         {
-            if (_isModifierEnabled == false)
+            if (IsModifierEnabled == false)
                 return;
             
             if (_hasEnteredRigidbodies == false)
@@ -58,18 +67,24 @@ namespace Scripts.Zones.Base
             
             foreach (RigidbodyData2D enteredRigidbody in _initialRigidbodiesDataMap.Values)
             {
+#if DEBUG
+                ZoneErrorsDetection.CheckRigidbodyForNull(enteredRigidbody, _isComponentEnabled, _zoneCollider2D);
+#endif
                 OnRigidbodyStay(enteredRigidbody);
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (_isComponentEnabled == false)
+                return;
+            
             if (other.TryGetRigidbody(out Rigidbody2D attachedRigidbody) == false)
                 return;
             
             if (TryAddRigidbody(attachedRigidbody, out RigidbodyData2D initialData))
             {
-                if (_isModifierEnabled)
+                if (IsModifierEnabled)
                 {
                     OnRigidbodyEntered(initialData);
                 }
@@ -78,12 +93,15 @@ namespace Scripts.Zones.Base
         
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (_isComponentEnabled == false)
+                return;
+            
             if (other.TryGetRigidbody(out Rigidbody2D attachedRigidbody) == false)
                 return;
             
             if (TryRemoveRigidbody(attachedRigidbody, out RigidbodyData2D initialData))
             {
-                if (_isModifierEnabled)
+                if (IsModifierEnabled)
                 {
                     OnRigidbodyExit(initialData);
                 }
@@ -92,22 +110,22 @@ namespace Scripts.Zones.Base
 
         public void EnableModifier()
         {
-            if (_isModifierEnabled)
+            if (IsModifierEnabled)
                 return;
             
             ModifyEnteredRigidbodies();
             
-            _isModifierEnabled = true;
+            IsModifierEnabled = true;
         }
 
         public void DisableModifier()
         {
-            if (_isModifierEnabled == false)
+            if (IsModifierEnabled == false)
                 return;
             
-            RevertEnteredRigidbodies();
+            RevertModifiedRigidbodies();
 
-            _isModifierEnabled = false;
+            IsModifierEnabled = false;
         }
         
         private void ForEachRigidbodyInitialData(Action<RigidbodyData2D> action)
@@ -118,6 +136,9 @@ namespace Scripts.Zones.Base
 #endif
             foreach (RigidbodyData2D initialData in _initialRigidbodiesDataMap.Values)
             {
+#if DEBUG
+                ZoneErrorsDetection.CheckRigidbodyForNull(initialData, _isComponentEnabled, _zoneCollider2D);
+#endif
                 action.Invoke(initialData);
             }
         }
@@ -153,9 +174,15 @@ namespace Scripts.Zones.Base
             ForEachRigidbodyInitialData(data => OnRigidbodyEntered(data));
         }
         
-        private void RevertEnteredRigidbodies()
+        private void RevertModifiedRigidbodies()
         {
             ForEachRigidbodyInitialData(data => OnRigidbodyExit(data));
+        }
+
+        private void ClearRigidbodiesInitialDataMap()
+        {
+            _initialRigidbodiesDataMap.Clear();
+            _hasEnteredRigidbodies = false;
         }
 
         protected virtual void OnRigidbodyEntered(in RigidbodyData2D initialRigidbodyData2D) { }
