@@ -1,0 +1,21 @@
+{
+    "name": "CannonSlowdown.Bootstrap",
+    "rootNamespace": "",
+    "references": [
+        "GUID:37039e6d155ee7345904ba44071e2ad9",
+        "GUID:02612323d77f5ef46bcd98bb52adb733",
+        "GUID:2cf081954f065424aae9b2f6506a67d8",
+        "GUID:7cb04177ac6ab5d4d862de7d88416695",
+        "GUID:1c1138d45e870a84daf86dfaafd711b7",
+        "GUID:f344667c2bb7dcb448eaac3e4e1890e4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

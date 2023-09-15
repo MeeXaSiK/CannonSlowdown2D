@@ -1,0 +1,16 @@
+{
+    "name": "CannonSlowdown.Triggers",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5c41b2d3b0032ab48a50ff8d1c8ba446"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

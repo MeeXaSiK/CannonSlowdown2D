@@ -1,0 +1,17 @@
+{
+    "name": "CannonSlowdown.Input",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7cb04177ac6ab5d4d862de7d88416695",
+        "GUID:f344667c2bb7dcb448eaac3e4e1890e4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

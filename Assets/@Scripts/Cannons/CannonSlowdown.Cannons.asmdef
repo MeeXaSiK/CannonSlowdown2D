@@ -1,0 +1,17 @@
+{
+    "name": "CannonSlowdown.Cannons",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3353fedcf0098e74981903b5591c9787",
+        "GUID:f344667c2bb7dcb448eaac3e4e1890e4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

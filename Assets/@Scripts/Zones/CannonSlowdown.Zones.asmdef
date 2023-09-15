@@ -1,0 +1,17 @@
+{
+    "name": "CannonSlowdown.Zones",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f344667c2bb7dcb448eaac3e4e1890e4",
+        "GUID:5c41b2d3b0032ab48a50ff8d1c8ba446"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
