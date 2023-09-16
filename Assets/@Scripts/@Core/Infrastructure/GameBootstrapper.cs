@@ -58,8 +58,10 @@ namespace Scripts.Core.Infrastructure
             _keyboardInputListener.BindAction(_inputSettings.RightCannonKey, _rightCannon.PerformShot);
             _keyboardInputListener.BindAction(_inputSettings.ReloadSceneKey, ReloadScene);
             _keyboardInputListener.BindAction(_inputSettings.QuitApplicationKey, Application.Quit);
-            _keyboardInputListener.BindAction(_inputSettings.EnableModifierZoneKey, _rigidbodyModifierZone2D.EnableModifier);
-            _keyboardInputListener.BindAction(_inputSettings.DisableModifierZoneKey, _rigidbodyModifierZone2D.DisableModifier);
+            _keyboardInputListener.BindAction(
+                _inputSettings.EnableModifierZoneKey, _rigidbodyModifierZone2D.EnableModifier);
+            _keyboardInputListener.BindAction(
+                _inputSettings.DisableModifierZoneKey, _rigidbodyModifierZone2D.DisableModifier);
             
             _updatables.Add(_keyboardInputListener);
         }
