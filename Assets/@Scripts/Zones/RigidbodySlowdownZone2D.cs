@@ -9,7 +9,7 @@ namespace Scripts.Zones
     {
         [SerializeField, Min(Constants.Zero)] private float _timeScale = 0.1f;
 
-        protected override void OnRigidbodyEntered(in RigidbodyData2D initialRigidbodyData2D)
+        protected override void OnRigidbodyEnter(in RigidbodyData2D initialRigidbodyData2D)
         {
             ApplySlowdown(initialRigidbodyData2D.Rigidbody2D);
         }

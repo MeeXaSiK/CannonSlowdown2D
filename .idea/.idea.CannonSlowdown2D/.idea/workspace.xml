@@ -7,6 +7,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/ae/1ea8ee56/Action.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -35,7 +38,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="E:/Unity3D/Builds/Cannon 1\CannonSlowdown.exe" />
+      <option name="EXE_PATH" value="E:/Unity3D/Builds/Cannon 2\CannonSlowdown.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="E:\Unity3D\Builds\Cannon 1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -88,7 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1694803216324</updated>
       <workItem from="1694803218314" duration="7538000" />
-      <workItem from="1694811008874" duration="649000" />
+      <workItem from="1694811008874" duration="1194000" />
+      <workItem from="1694849287994" duration="7171000" />
     </task>
     <servers />
   </component>
