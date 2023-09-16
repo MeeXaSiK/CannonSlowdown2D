@@ -19,7 +19,7 @@ namespace Scripts.Cannons
         {
 #if DEBUG
             if (_projectilePrefab == null)
-                throw new NullReferenceException("You've set a null projectile!");
+                throw new NullReferenceException("You didn't set the projectile prefab!");
 #endif
             Vector3 projectileSpawnPosition = _projectileLaunchPoint.position;
             Vector3 direction = transform.up;

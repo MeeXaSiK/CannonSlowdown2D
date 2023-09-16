@@ -38,7 +38,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="E:/Unity3D/Builds/Cannon 2\CannonSlowdown.exe" />
+      <option name="EXE_PATH" value="E:/Unity3D/Builds/Cannon 3\CannonSlowdown.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="E:\Unity3D\Builds\Cannon 1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -92,7 +92,7 @@
       <updated>1694803216324</updated>
       <workItem from="1694803218314" duration="7538000" />
       <workItem from="1694811008874" duration="1194000" />
-      <workItem from="1694849287994" duration="7171000" />
+      <workItem from="1694849287994" duration="7513000" />
     </task>
     <servers />
   </component>
