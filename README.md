@@ -1,4 +1,6 @@
 # 🔥 Cannon Slowdown 2D
+[![Unity](https://img.shields.io/badge/Unity-2022.3.9f1-2296F3.svg?color=318CE7&style=flat-square)](https://unity.com/)
+
 ➡ This is the mini game with `Rigidbody2D` slow motion mechanics.
 
 ### About Game
