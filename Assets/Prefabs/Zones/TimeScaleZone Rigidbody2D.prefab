@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4678772357959494576}
   - component: {fileID: 686349134612233118}
   m_Layer: 0
-  m_Name: Slowdown Zone
+  m_Name: TimeScaleZone Rigidbody2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

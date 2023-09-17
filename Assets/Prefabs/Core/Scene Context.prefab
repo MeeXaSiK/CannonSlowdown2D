@@ -862,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8591679734090983895, guid: 29c89bb69ca9a0e479ca254a0fb005f6, type: 3}
       propertyPath: m_Name
-      value: Slowdown Zone
+      value: TimeScaleZone Rigidbody2D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
