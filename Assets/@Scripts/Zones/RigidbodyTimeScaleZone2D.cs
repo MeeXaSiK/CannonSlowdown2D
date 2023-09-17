@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace Scripts.Zones
 {
-    public class RigidbodySlowdownZone2D : RigidbodyModifierZone2D
+    public class RigidbodyTimeScaleZone2D : RigidbodyModifierZone2D
     {
-        [SerializeField, Min(Constants.Zero)] private float _timeScale = 0.1f;
+        [SerializeField, Min(MinTimeScale)] private float _timeScale = 0.1f;
 
+        private const float MinTimeScale = 0.01f;
+        
         protected override void OnRigidbodyEnter(in RigidbodyData2D initialRigidbodyData2D)
         {
-            ApplySlowdown(initialRigidbodyData2D.Rigidbody2D);
+            ApplyTimeScale(initialRigidbodyData2D.Rigidbody2D);
         }
 
         protected override void OnRigidbodyStay(in RigidbodyData2D initialRigidbodyData2D)
@@ -21,10 +23,10 @@ namespace Scripts.Zones
 
         protected override void OnRigidbodyExit(in RigidbodyData2D initialRigidbodyData2D)
         {
-            RevertSlowdown(initialRigidbodyData2D);
+            RevertTimeScale(initialRigidbodyData2D);
         }
 
-        private void ApplySlowdown(Rigidbody2D rigidbodyToModify)
+        private void ApplyTimeScale(Rigidbody2D rigidbodyToModify)
         {
             rigidbodyToModify.gravityScale = Constants.Zero;
             rigidbodyToModify.mass /= _timeScale;
@@ -41,7 +43,7 @@ namespace Scripts.Zones
             data.Rigidbody2D.velocity += Physics2D.gravity / data.Rigidbody2D.mass * deltaTime;	
         }
 
-        private void RevertSlowdown(in RigidbodyData2D data)
+        private void RevertTimeScale(in RigidbodyData2D data)
         {
             var rigidbodyToRevert = data.Rigidbody2D;
             
