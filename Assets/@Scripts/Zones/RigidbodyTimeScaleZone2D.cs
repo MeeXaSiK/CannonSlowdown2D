@@ -23,8 +23,8 @@ namespace Scripts.Zones
 
         private void ApplyTimeScale(Rigidbody2D rigidbodyToModify)
         {
-            rigidbodyToModify.mass /= _timeScale;
             rigidbodyToModify.gravityScale *= _timeScale.GetSquaredNumber();
+            rigidbodyToModify.mass /= _timeScale;
             rigidbodyToModify.velocity *= _timeScale;
             rigidbodyToModify.angularVelocity *= _timeScale;
             rigidbodyToModify.drag *= _timeScale;
